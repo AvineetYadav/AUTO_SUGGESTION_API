@@ -17,7 +17,12 @@ app.get("/search", async (req, res) => {
   try {
     const { q } = req.query;
     const response = await axios.get(
-      `https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=${q}`
+      `https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=${q}`,
+      {
+        headers: {
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
+        }
+      }
     );
     res.json(response.data);
   } catch (error) {
@@ -25,8 +30,8 @@ app.get("/search", async (req, res) => {
   }
 });
 
-app.get('/',(req, res) => {
-    res.send(`Welcome@!`);
+app.get('/', (req, res) => {
+  res.send(`Welcome!`);
 })
 
 app.listen(port, () => {
