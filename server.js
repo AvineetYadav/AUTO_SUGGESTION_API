@@ -1,18 +1,14 @@
 const express = require("express");
 const axios = require("axios");
+const cors = require("cors");
 const app = express();
-const port = 4200;
-const frontendUri = "http://localhost:5173"; // Replace with your frontend URL
+const port = 4200
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", frontendUri);
-  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  next();
-});
+app.use(cors({
+  origin: process.env.frontendUri,
+  methods: "GET,HEAD,OPTIONS,POST,PUT",
+  allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+}));
 
 app.get("/search", async (req, res) => {
   try {
@@ -33,7 +29,7 @@ app.get("/search", async (req, res) => {
 
 app.get('/', (req, res) => {
   res.send(`Welcome!`);
-})
+});
 
 app.listen(port, () => {
   console.log(`Proxy server listening at http://localhost:${port}`);
