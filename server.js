@@ -28,7 +28,7 @@ app.get("/search", async (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  res.send(`Welcome!`);
+  res.send(`Welcome!@`);
 });
 
 app.listen(port, () => {
