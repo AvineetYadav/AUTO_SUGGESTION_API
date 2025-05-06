@@ -5,7 +5,7 @@ const app = express();
 const port = 4200
 
 app.use(cors({
-  origin: process.env.frontendUri,
+  origin: "*",
   methods: "GET,HEAD,OPTIONS,POST,PUT",
   allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept, Authorization"
 }));
